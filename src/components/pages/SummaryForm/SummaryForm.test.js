@@ -7,12 +7,14 @@ describe('SummaryForm', () => {
     render(<SummaryForm />);
     const termsConfirmationCheckbox = screen.getByRole('checkbox', { name: 'I agree to Terms and Conditions' });
     const confirmOrderButton = screen.getByRole('button', { name: 'Confirm order' });
-    // Is unchecked by default
+
     expect(termsConfirmationCheckbox).not.toBeChecked();
     expect(confirmOrderButton).toBeDisabled();
-    // Checking enables the button
+
     fireEvent.click(termsConfirmationCheckbox);
     expect(confirmOrderButton).toBeEnabled();
-    // Unchecking disables the button
+
+    fireEvent.click(termsConfirmationCheckbox);
+    expect(confirmOrderButton).toBeDisabled();
   });
 });
