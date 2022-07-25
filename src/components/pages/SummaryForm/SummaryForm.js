@@ -1,11 +1,25 @@
+import { useState } from 'react';
+
 const SummaryForm = () => {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const clickHandler = ({ target }) => {
+    setIsDisabled(!target.checked);
+  };
   return (
     <>
       <div style={{ marginBottom: '0.5rem' }}>
-        <input type='checkbox' style={{ marginRight: '0.5rem' }} />I agree to Terms and Conditions
+        <input
+          id='terms-confirmation-checkbox'
+          type='checkbox'
+          style={{ marginRight: '0.5rem' }}
+          onClick={clickHandler}
+        />
+        <label htmlFor='terms-confirmation-checkbox'>I agree to Terms and Conditions</label>
       </div>
       <div>
-        <button type='button'>Confirm order</button>
+        <button disabled={isDisabled} type='button'>
+          Confirm order
+        </button>
       </div>
     </>
   );
