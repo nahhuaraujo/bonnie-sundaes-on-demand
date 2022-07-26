@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import * as S from './SummaryForm.styled';
+
 const SummaryForm = () => {
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -8,22 +10,17 @@ const SummaryForm = () => {
   };
 
   return (
-    <div>
-      <div style={{ marginBottom: '0.5rem' }}>
-        <input
-          id='terms-confirmation-checkbox'
-          type='checkbox'
-          style={{ marginRight: '0.5rem' }}
-          onClick={clickHandler}
-        />
+    <S.SummaryForm>
+      <S.TermsConfirmation>
+        <S.TermsConfirmationCheckbox id='terms-confirmation-checkbox' type='checkbox' onClick={clickHandler} />
         <label htmlFor='terms-confirmation-checkbox'>I agree to Terms and Conditions</label>
-      </div>
+      </S.TermsConfirmation>
       <div>
         <button disabled={isDisabled} type='button'>
           Confirm order
         </button>
       </div>
-    </div>
+    </S.SummaryForm>
   );
 };
 
