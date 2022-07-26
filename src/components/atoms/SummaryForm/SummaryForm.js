@@ -2,11 +2,13 @@ import { useState } from 'react';
 
 const SummaryForm = () => {
   const [isDisabled, setIsDisabled] = useState(true);
+
   const clickHandler = ({ target }) => {
     setIsDisabled(!target.checked);
   };
+
   return (
-    <>
+    <div>
       <div style={{ marginBottom: '0.5rem' }}>
         <input
           id='terms-confirmation-checkbox'
@@ -21,7 +23,7 @@ const SummaryForm = () => {
           Confirm order
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

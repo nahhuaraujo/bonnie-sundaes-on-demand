@@ -1,4 +1,4 @@
-import { SummaryForm } from '../';
+import { SummaryForm } from '../../atoms';
 
 const OrderSummary = () => {
   return (

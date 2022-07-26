@@ -12,9 +12,11 @@ describe('SummaryForm', () => {
     expect(confirmOrderButton).toBeDisabled();
 
     fireEvent.click(termsConfirmationCheckbox);
+    expect(termsConfirmationCheckbox).toBeChecked();
     expect(confirmOrderButton).toBeEnabled();
 
     fireEvent.click(termsConfirmationCheckbox);
+    expect(termsConfirmationCheckbox).not.toBeChecked();
     expect(confirmOrderButton).toBeDisabled();
   });
 });
