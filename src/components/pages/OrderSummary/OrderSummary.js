@@ -1,11 +1,13 @@
 import { SummaryForm } from '../../atoms';
 
+import * as S from './OrderSummary.styled';
+
 const OrderSummary = () => {
   return (
-    <div>
+    <S.OrderSummary>
       <h1>Order Summary</h1>
       <SummaryForm />
-    </div>
+    </S.OrderSummary>
   );
 };
 
