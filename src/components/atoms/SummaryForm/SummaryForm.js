@@ -27,9 +27,7 @@ const SummaryForm = () => {
             I agree to <S.TermsSpan>Terms and Conditions</S.TermsSpan>
           </span>
         </label>
-        <S.TermsAndConditions show={show}>
-          I understand that I won't recieve any icecream whatsoever
-        </S.TermsAndConditions>
+        {show && <S.TermsAndConditions>I understand that I won't recieve any icecream whatsoever</S.TermsAndConditions>}
       </S.TermsConfirmation>
       <div>
         <button disabled={!isChecked} type='button'>

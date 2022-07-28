@@ -20,7 +20,6 @@ export const TermsAndConditions = styled.div`
   padding: 0.5rem;
   border: 1px solid white;
   border-radius: 10px;
-  display: ${props => (props.show ? 'block' : 'none')};
   position: absolute;
   top: -8px;
   left: 270px;
