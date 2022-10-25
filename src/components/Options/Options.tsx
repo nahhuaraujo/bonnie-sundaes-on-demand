@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { ScoopOption } from '../';
+import { ScoopOption, ToppingOption } from '../';
 
 interface Props {
-  optionType: string;
+  optionType: 'scoops' | 'toppings';
 }
 
 interface Option {
@@ -22,21 +22,10 @@ const Options = (props: Props) => {
     getOptions();
   }, [props.optionType]);
 
-  if (props.optionType === 'scoops') {
-    return (
-      <div>
-        {options.map((option, i) => (
-          <ScoopOption key={i} name={option.name} imagePath={option.imagePath} />
-        ))}
-      </div>
-    );
-  }
-
   return (
     <div>
-      {options.map((option, i) => (
-        <img key={i} alt={`${option.name} topping`} src={option.imagePath} />
-      ))}
+      {props.optionType === 'scoops' && options.map((option, i) => <ScoopOption key={i} name={option.name} imagePath={option.imagePath} />)}
+      {props.optionType === 'toppings' && options.map((option, i) => <ToppingOption key={i} name={option.name} imagePath={option.imagePath} />)}
     </div>
   );
 };
