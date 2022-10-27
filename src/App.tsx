@@ -1,9 +1,9 @@
-import { OrderSummary } from './pages';
+import { OrderEntry } from './pages';
 
 const App = () => {
   return (
     <div>
-      <OrderSummary />
+      <OrderEntry />
     </div>
   );
 };
