@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { ScoopOption, ToppingOption } from '../';
 import { AlertBanner } from '../../components';
+import { AppStore } from '../../redux/store';
+import { sumScoops, sumToppings } from '../../utils/summary.utils';
+import * as S from './Options.styled';
 
 interface Props {
   optionType: 'scoops' | 'toppings';
@@ -14,8 +18,12 @@ interface Option {
 }
 
 const Options = (props: Props) => {
+  const summary = useSelector((store: AppStore) => store.summary);
   const [options, setOptions] = useState<Option[]>([]);
   const [error, setError] = useState<string>();
+
+  const scoopPrice = 2;
+  const toppingPrice = 1.5;
 
   useEffect(() => {
     const getOptions = async () => {
@@ -31,15 +39,43 @@ const Options = (props: Props) => {
     getOptions();
   }, [props.optionType]);
 
-  return (
-    <div>
-      {props.optionType === 'scoops' &&
-        options.map((option, i) => <ScoopOption key={i} name={option.name} imagePath={option.imagePath} imageWidth={props.imageWidth} />)}
-      {props.optionType === 'toppings' &&
-        options.map((option, i) => <ToppingOption key={i} name={option.name} imagePath={option.imagePath} imageWidth={props.imageWidth} />)}
-      {error && <AlertBanner variant='red' message={error} />}
-    </div>
-  );
+  if (error) {
+    return <AlertBanner variant='red' message={error} />;
+  }
+
+  if (props.optionType === 'scoops') {
+    return (
+      <div>
+        <div>${scoopPrice} each</div>
+        <S.OptionsContainer>
+          {options.map((option, i) => (
+            <ScoopOption key={i} name={option.name} imagePath={option.imagePath} imageWidth={props.imageWidth} />
+          ))}
+        </S.OptionsContainer>
+        <div>
+          Scoops total: <strong>${sumScoops(summary.scoops, scoopPrice)}</strong>
+        </div>
+      </div>
+    );
+  }
+
+  if (props.optionType === 'toppings') {
+    return (
+      <div>
+        <div>${toppingPrice} each</div>
+        <S.OptionsContainer>
+          {options.map((option, i) => (
+            <ToppingOption key={i} name={option.name} imagePath={option.imagePath} imageWidth={props.imageWidth} />
+          ))}
+        </S.OptionsContainer>
+        <div>
+          Toppings total: <strong>${sumToppings(summary.toppings, toppingPrice)}</strong>
+        </div>
+      </div>
+    );
+  }
+
+  return <></>;
 };
 
 export default Options;

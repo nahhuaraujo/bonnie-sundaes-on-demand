@@ -1,18 +1,23 @@
 import { Options } from '../../components';
+import * as S from './OrderEntry.styled';
 
 const OrderEntry = () => {
   return (
-    <div>
-      <h2>Design your sundae</h2>
+    <S.OrderEntry>
+      <h1>Design your sundae</h1>
       <h3>Scoops</h3>
-      <Options optionType='scoops' imageWidth={100} />
+      <Options optionType='scoops' imageWidth={150} />
+      <br />
       <h3>Toppings</h3>
-      <Options optionType='toppings' imageWidth={100} />
+      <div>
+        <Options optionType='toppings' imageWidth={150} />
+      </div>
+      <br />
       <h3>
         Grand total: <span>$0.00</span>
       </h3>
       <button>Order sundae</button>
-    </div>
+    </S.OrderEntry>
   );
 };
 

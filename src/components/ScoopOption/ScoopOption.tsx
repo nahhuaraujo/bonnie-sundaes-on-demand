@@ -1,3 +1,4 @@
+import { useSummaryActions } from '../../hooks';
 import * as S from './ScoopOption.styled';
 
 interface Props {
@@ -7,14 +8,19 @@ interface Props {
 }
 
 const ScoopOption = (props: Props) => {
+  const { changeScoop } = useSummaryActions();
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    changeScoop({ scoopName: props.name, scoopQnty: parseInt(e.target.value) });
+  };
+
   return (
     <S.ScoopOption>
-      <S.ScoopImg
-        alt={`${props.name} scoop`}
-        title={`${props.name} scoop`}
-        src={`http://localhost:3030/${props.imagePath}`}
-        width={props.imageWidth}
-      />
+      <img alt={`${props.name} scoop`} title={`${props.name} scoop`} src={`http://localhost:3030/${props.imagePath}`} width={props.imageWidth} />
+      <div>
+        <label htmlFor='scoop-qnty'>{props.name}</label>
+        <input id='scoop-qnty' type='number' defaultValue={0} min={0} onChange={changeHandler} />
+      </div>
     </S.ScoopOption>
   );
 };
