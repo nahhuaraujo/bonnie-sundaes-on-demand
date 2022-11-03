@@ -1,9 +1,16 @@
 export interface ISummary {
   scoops: {
-    scoopName: string;
-    scoopQnty: number;
-  }[];
+    selected: {
+      scoopName: string;
+      scoopQnty: number;
+    }[];
+    price: number;
+    subtotal: number;
+  };
   toppings: {
-    toppingName: string;
-  }[];
+    selected: { toppingName: string }[];
+    price: number;
+    subtotal: number;
+  };
+  total: number;
 }
