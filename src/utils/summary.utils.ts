@@ -22,3 +22,7 @@ export const sumToppings = (toppings: Topping[], price: number) => {
   });
   return total;
 };
+
+export const sumTotal = (scoopsSubtotal: number, toppingsSubtotal: number) => {
+  return scoopsSubtotal + toppingsSubtotal;
+};

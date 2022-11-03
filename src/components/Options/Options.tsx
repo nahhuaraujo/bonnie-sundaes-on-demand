@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { ScoopOption, ToppingOption } from '../';
 import { AlertBanner } from '../../components';
 import { AppStore } from '../../redux/store';
-import { sumScoops, sumToppings } from '../../utils/summary.utils';
 import * as S from './Options.styled';
 
 interface Props {
@@ -53,7 +52,7 @@ const Options = (props: Props) => {
           ))}
         </S.OptionsContainer>
         <div>
-          Scoops total: <strong>${sumScoops(summary.scoops, scoopPrice)}</strong>
+          Scoops total: <strong>${summary.scoops.subtotal}</strong>
         </div>
       </div>
     );
@@ -69,7 +68,7 @@ const Options = (props: Props) => {
           ))}
         </S.OptionsContainer>
         <div>
-          Toppings total: <strong>${sumToppings(summary.toppings, toppingPrice)}</strong>
+          Toppings total: <strong>${summary.toppings.subtotal}</strong>
         </div>
       </div>
     );

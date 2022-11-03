@@ -1,7 +1,10 @@
+import { useSelector } from 'react-redux';
 import { Options } from '../../components';
+import { AppStore } from '../../redux/store';
 import * as S from './OrderEntry.styled';
 
 const OrderEntry = () => {
+  const total = useSelector((store: AppStore) => store.summary.total);
   return (
     <S.OrderEntry>
       <h1>Design your sundae</h1>
@@ -14,7 +17,7 @@ const OrderEntry = () => {
       </div>
       <br />
       <h3>
-        Grand total: <span>$0.00</span>
+        Grand total: <span>${total}</span>
       </h3>
       <button>Order sundae</button>
     </S.OrderEntry>
