@@ -19,7 +19,7 @@ const ScoopOption = (props: Props) => {
       <img alt={`${props.name} scoop`} title={`${props.name} scoop`} src={`http://localhost:3030/${props.imagePath}`} width={props.imageWidth} />
       <div>
         <label htmlFor={`${props.name}-scoop-qnty`}>{props.name}</label>
-        <input id={`${props.name}-scoop-qnty`} type='number' defaultValue={0} min={0} onChange={changeHandler} />
+        <input id={`${props.name}-scoop-qnty`} type='number' defaultValue={0} min={0} max={3} onChange={changeHandler} />
       </div>
     </S.ScoopOption>
   );
