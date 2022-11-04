@@ -21,9 +21,6 @@ const Options = (props: Props) => {
   const [options, setOptions] = useState<Option[]>([]);
   const [error, setError] = useState<string>();
 
-  const scoopPrice = 2;
-  const toppingPrice = 1.5;
-
   useEffect(() => {
     const getOptions = async () => {
       try {
@@ -45,15 +42,15 @@ const Options = (props: Props) => {
   if (props.optionType === 'scoops') {
     return (
       <div>
-        <div>${scoopPrice} each</div>
+        <div>${summary.scoops.price} each</div>
+        <div>
+          Scoops total: <strong>${summary.scoops.subtotal}</strong>
+        </div>
         <S.OptionsContainer>
           {options.map((option, i) => (
             <ScoopOption key={i} name={option.name} imagePath={option.imagePath} imageWidth={props.imageWidth} />
           ))}
         </S.OptionsContainer>
-        <div>
-          Scoops total: <strong>${summary.scoops.subtotal}</strong>
-        </div>
       </div>
     );
   }
@@ -61,15 +58,15 @@ const Options = (props: Props) => {
   if (props.optionType === 'toppings') {
     return (
       <div>
-        <div>${toppingPrice} each</div>
+        <div>${summary.toppings.price} each</div>
+        <div>
+          Toppings total: <strong>${summary.toppings.subtotal}</strong>
+        </div>
         <S.OptionsContainer>
           {options.map((option, i) => (
             <ToppingOption key={i} name={option.name} imagePath={option.imagePath} imageWidth={props.imageWidth} />
           ))}
         </S.OptionsContainer>
-        <div>
-          Toppings total: <strong>${summary.toppings.subtotal}</strong>
-        </div>
       </div>
     );
   }
