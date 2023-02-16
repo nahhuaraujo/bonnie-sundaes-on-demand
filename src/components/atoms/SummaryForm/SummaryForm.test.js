@@ -4,9 +4,11 @@ import userEvent from '@testing-library/user-event';
 import { SummaryForm } from '../../atoms';
 
 describe('SummaryForm', () => {
-  test('Initial conditions', () => {
+  beforeEach(() => {
     render(<SummaryForm />);
+  });
 
+  test('Initial conditions', () => {
     const termsConfirmationCheckbox = screen.getByRole('checkbox', { name: /terms and conditions/i });
     const confirmOrderButton = screen.getByRole('button', { name: /confirm order/i });
 
@@ -15,8 +17,6 @@ describe('SummaryForm', () => {
   });
 
   test('Checkbox disables button on first click and enables it in the second click', () => {
-    render(<SummaryForm />);
-
     const termsConfirmationCheckbox = screen.getByRole('checkbox', { name: /terms and conditions/i });
     const confirmOrderButton = screen.getByRole('button', { name: /confirm order/i });
 
@@ -30,8 +30,6 @@ describe('SummaryForm', () => {
   });
 
   test('Terms and Conditions hover/unhover triggers popover', () => {
-    render(<SummaryForm />);
-
     const nullTermsPopover = screen.queryByText(/I won't recieve any icecream/i);
     expect(nullTermsPopover).not.toBeInTheDocument();
 
@@ -43,5 +41,7 @@ describe('SummaryForm', () => {
 
     userEvent.unhover(termsAndConditions);
     expect(termsPopover).not.toBeInTheDocument();
+
+    // VOLVER A VER LA CLASE 43
   });
 });
